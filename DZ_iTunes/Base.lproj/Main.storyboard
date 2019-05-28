@@ -86,6 +86,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                         <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="4" maxY="0.0"/>
                                         <state key="normal" image="backward.png"/>
+                                        <connections>
+                                            <action selector="actionBackwardButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xVI-Ep-Noa"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -110,6 +113,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                         <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" image="play.png"/>
+                                        <connections>
+                                            <action selector="actionPlayButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CUl-qM-5hk"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -134,6 +140,9 @@
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
                                         <inset key="contentEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" image="forward.png"/>
+                                        <connections>
+                                            <action selector="actionForwardButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TUz-dl-NXD"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -90,7 +90,10 @@ extension SearchListViewController: UITableViewDelegate {
         
        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-       let vc = storyboard.instantiateViewController(withIdentifier: "SongViewController")
+       let vc = storyboard.instantiateViewController(withIdentifier: "SongViewController") as! SongViewController
+    
+        let song = songs[indexPath.row]
+        vc.url = song.previewUrl
         
        navigationController?.pushViewController(vc, animated: true)
         
@@ -99,9 +102,11 @@ extension SearchListViewController: UITableViewDelegate {
 }
 
 extension SearchListViewController: UISearchBarDelegate {
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         guard let text = searchBar.text, text.count > 0 else { return }
+        
         let newText = text.reduce("") { (result, character) -> String in
             if character == " " {
                 return result + String("+")
@@ -115,6 +120,6 @@ extension SearchListViewController: UISearchBarDelegate {
         ]
         
         fetchData(searchParams: params)
-        
     }
+    
 }
