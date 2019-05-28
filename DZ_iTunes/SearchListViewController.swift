@@ -12,19 +12,27 @@ class SearchListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
+    var searchController: UISearchController!
+    
     var songs = [Song]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = URL(string: "https://itunes.apple.com/search")!
+        tableView.tableFooterView = UIView(frame: .zero)
         
-        let params = [
-            "term" : "Natalia+Oreiro",
-            "country" : "RU"
-        ]
+        searchController = UISearchController(searchResultsController: nil)
+        let searchBar = searchController.searchBar
+        searchBar.delegate = self
         
-        guard let queryURL = url.urlWithQueryItems(for: params) else { return }
+        tableView.tableHeaderView = searchBar
+        
+    }
+    
+    private func fetchData(searchParams: [String : String]) {
+        guard let url = URL(string: "https://itunes.apple.com/search") else { return }
+        
+        guard let queryURL = url.urlWithQueryItems(for: searchParams) else { return }
         
         ServerManager.manager.fetchData(from: queryURL){(result, error) in
             guard let songs = result else { return }
@@ -34,7 +42,6 @@ class SearchListViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
-        
     }
     
     private func configureCell(cell: UITableViewCell, with indexPath: IndexPath) {
@@ -48,9 +55,9 @@ class SearchListViewController: UIViewController {
             DispatchQueue.main.async {
                 cell.imageView?.image = image
                 cell.layoutSubviews()
+                cell.layoutIfNeeded()
             }
         }
-        
     }
 
 }
@@ -89,4 +96,25 @@ extension SearchListViewController: UITableViewDelegate {
         
     }
     
+}
+
+extension SearchListViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        guard let text = searchBar.text, text.count > 0 else { return }
+        let newText = text.reduce("") { (result, character) -> String in
+            if character == " " {
+                return result + String("+")
+            }
+            return result + String(character)
+        }
+        
+        let params = [
+            "term" : newText,
+            "country" : "RU"
+        ]
+        
+        fetchData(searchParams: params)
+        
+    }
 }

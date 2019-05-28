@@ -10,8 +10,8 @@ import Foundation
 
 struct Song: Decodable {
     
-    var artistName: String // Natalia Oreiro
-    var trackName: String // Cambio Dolor
+    var artistName: String
+    var trackName: String
     var previewUrl: URL
     var imageUrl: URL
     var trackPrice: Double
@@ -25,15 +25,12 @@ struct Song: Decodable {
     }
     
     init(from decoder: Decoder) throws {
-        
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        
         artistName = try container.decode(String.self, forKey: CodingKeys.artistName)
         trackName = try container.decode(String.self, forKey: CodingKeys.trackName)
         previewUrl = try container.decode(URL.self, forKey: CodingKeys.previewUrl)
         imageUrl = try container.decode(URL.self, forKey: CodingKeys.imageUrl)
         trackPrice = try container.decode(Double.self, forKey: CodingKeys.trackPrice)
-        
     }
     
 }

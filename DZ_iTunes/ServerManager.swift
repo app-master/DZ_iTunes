@@ -31,14 +31,16 @@ final class ServerManager {
         }.resume()
     }
     
-    func loadImage(from url: URL, completion: (UIImage?) -> Void) {
-        let data = try? Data(contentsOf: url)
-        guard let imageData = data else {
-            completion(nil)
-            return
+    func loadImage(from url: URL, completion: @escaping (UIImage?) -> Void) {
+        DispatchQueue.global().async {
+            let data = try? Data(contentsOf: url)
+            guard let imageData = data else {
+                completion(nil)
+                return
+            }
+            let image = UIImage(data: imageData)
+            completion(image)
         }
-        let image = UIImage(data: imageData)
-        completion(image)
     }
     
 }
