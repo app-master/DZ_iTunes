@@ -116,6 +116,7 @@ extension SearchListViewController: UISearchBarDelegate {
         
         let params = [
             "term" : newText,
+            "media" : "music",
             "country" : "RU"
         ]
         

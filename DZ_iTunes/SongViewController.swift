@@ -16,6 +16,12 @@ class SongViewController: UIViewController {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var forwardButton: UIButton!
     
+    @IBOutlet weak var songView: UIView!
+    @IBOutlet weak var songStackView: UIStackView!
+    @IBOutlet weak var songImageView: UIImageView!
+    @IBOutlet weak var trackNameLabel: UILabel!
+    @IBOutlet weak var artistNameLabel: UILabel!
+    
     var session: URLSession!
     var player: AVAudioPlayer?
     var song: Song!
@@ -24,10 +30,11 @@ class SongViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let finalPath = URL.songPathURL(with: self.song.artistName, trackName: song.trackName)
+        let finalPath = Song.songPathURL(with: self.song.artistName, trackName: song.trackName)
         
         if FileManager.default.fileExists(atPath: finalPath.path) {
             setupAudioPlayer(contentsOf: finalPath)
+            setupSongView()
             actionButtonsIsEnabled(true)
         } else {
             progressView.isHidden = false
@@ -40,6 +47,18 @@ class SongViewController: UIViewController {
     func setupAudioPlayer(contentsOf url: URL) {
         self.player = try? AVAudioPlayer(contentsOf: url)
         self.player?.delegate = self
+    }
+    
+    func setupSongView() {
+        self.songView.isHidden = false
+        self.trackNameLabel.text = self.song.trackName
+        self.artistNameLabel.text = self.song.artistName
+        
+        ServerManager.manager.loadImage(from: self.song.imageUrl, completion: { (image) in
+            DispatchQueue.main.async {
+                self.songImageView.image = image
+            }
+        })
     }
     
     func animationButtonPressed(button: UIButton, completion:@escaping () -> ()) -> UIViewPropertyAnimator {
@@ -120,30 +139,14 @@ extension SongViewController: URLSessionDownloadDelegate {
                     downloadTask: URLSessionDownloadTask,
                     didFinishDownloadingTo
         location: URL) {
-
-//        DispatchQueue.main.async {
-//            self.progressView.isHidden = true
-//        }
         
-//        let fileManager = FileManager.default
-//        
-//        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]
-//        
-//        let documentsPathURL = URL(fileURLWithPath: documentsPath)
-//        
-//        var finalPath = documentsPathURL.appendingPathComponent("Preview")
-//        
-//        try? fileManager.createDirectory(at: finalPath, withIntermediateDirectories: true, attributes: nil)
-//        
-//        finalPath.appendPathComponent("\(self.song.artistName)-\(song.trackName).m4a")
-        
-        let path = URL.songPathURL(with: self.song.artistName, trackName: song.trackName)
+        let path = Song.songPathURL(with: self.song.artistName, trackName: song.trackName)
         
         do {
             try FileManager.default.copyItem(at: location, to: path)
             setupAudioPlayer(contentsOf: path)
         } catch {
-            print(error.localizedDescription)
+            self.showAlertWithMessage(error.localizedDescription)
         }
     }
 
@@ -167,6 +170,7 @@ extension SongViewController: URLSessionDownloadDelegate {
         
         DispatchQueue.main.async {
             self.actionButtonsIsEnabled(true)
+            self.setupSongView()
         }
     }
 
