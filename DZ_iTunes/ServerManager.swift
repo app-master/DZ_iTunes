@@ -12,6 +12,8 @@ final class ServerManager {
     
     static let manager = ServerManager()
     
+    var imageCache = NSCache<NSURL, UIImage>()
+    
     private init() {}
     
     func fetchData(from url: URL, completion: @escaping ([Song]?, NSError?) -> Void) {

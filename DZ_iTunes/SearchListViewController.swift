@@ -11,10 +11,9 @@ import UIKit
 class SearchListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
     var searchController: UISearchController!
-    
     var songs = [Song]()
+    var imageCache = ServerManager.manager.imageCache
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,11 +50,17 @@ class SearchListViewController: UIViewController {
         cell.textLabel?.text = song.trackName
         cell.detailTextLabel?.text = song.artistName
         
-        ServerManager.manager.loadImage(from: song.imageUrl) { image in
-            DispatchQueue.main.async {
-                cell.imageView?.image = image
-                cell.layoutSubviews()
-                cell.layoutIfNeeded()
+        if let image = imageCache.object(forKey: song.imageUrl as NSURL) {
+            cell.imageView?.image = image
+        } else {
+            ServerManager.manager.loadImage(from: song.imageUrl) { image in
+                guard let image = image else { return }
+                DispatchQueue.main.async {
+                    self.imageCache.setObject(image, forKey: song.imageUrl as NSURL)
+                    cell.imageView?.image = image
+                    cell.layoutSubviews()
+                    cell.layoutIfNeeded()
+                }
             }
         }
     }

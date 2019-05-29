@@ -26,6 +26,7 @@ class SongViewController: UIViewController {
     var player: AVAudioPlayer?
     var song: Song!
     var playButtonPressed = true
+    var imageCache = ServerManager.manager.imageCache
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,11 +55,17 @@ class SongViewController: UIViewController {
         self.trackNameLabel.text = self.song.trackName
         self.artistNameLabel.text = self.song.artistName
         
-        ServerManager.manager.loadImage(from: self.song.imageUrl, completion: { (image) in
-            DispatchQueue.main.async {
-                self.songImageView.image = image
-            }
-        })
+        if let image = imageCache.object(forKey: song.imageUrl as NSURL) {
+            self.songImageView.image = image
+        } else {
+            ServerManager.manager.loadImage(from: song.imageUrl, completion: { image in
+                guard let image = image else { return }
+                DispatchQueue.main.async {
+                    self.imageCache.setObject(image, forKey: self.song.imageUrl as NSURL)
+                    self.songImageView.image = image
+                }
+            })
+        }
     }
     
     func animationButtonPressed(button: UIButton, completion:@escaping () -> ()) -> UIViewPropertyAnimator {
