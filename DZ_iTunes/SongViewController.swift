@@ -12,48 +12,34 @@ import AVFoundation
 class SongViewController: UIViewController {
 
     @IBOutlet weak var progressView: UIProgressView!
+    @IBOutlet weak var backwardButton: UIButton!
+    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var forwardButton: UIButton!
     
-    var song: Song!
-    
-    //var url: URL!
-    
-    var playButtonPressed = true
-
     var session: URLSession!
-    
     var player: AVAudioPlayer?
+    var song: Song!
+    var playButtonPressed = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
+        let finalPath = URL.songPathURL(with: self.song.artistName, trackName: song.trackName)
         
-        session.downloadTask(with: song.previewUrl).resume()
-        
-        
-//        URLSession.shared.downloadTask(with: url) { (url, response, error) in
-//
-//            let fileManager = FileManager.default
-//
-//            let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]
-//
-//            let documentsPathURL = URL(fileURLWithPath: documentsPath)
-//
-//            var finalPath = documentsPathURL.appendingPathComponent("Preview")
-//
-//           try? fileManager.createDirectory(at: finalPath, withIntermediateDirectories: true, attributes: nil)
-//
-//            finalPath.appendPathComponent("qqq.m4a")
-//
-//            do {
-//                try fileManager.copyItem(at: url!, to: finalPath)
-//            } catch {
-//                print(error.localizedDescription)
-//            }
-//
-//            print()
-//        }.resume()
-        
+        if FileManager.default.fileExists(atPath: finalPath.path) {
+            setupAudioPlayer(contentsOf: finalPath)
+            actionButtonsIsEnabled(true)
+        } else {
+            progressView.isHidden = false
+            session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
+            
+            session.downloadTask(with: song.previewUrl).resume()
+        }
+    }
+    
+    func setupAudioPlayer(contentsOf url: URL) {
+        self.player = try? AVAudioPlayer(contentsOf: url)
+        self.player?.delegate = self
     }
     
     func animationButtonPressed(button: UIButton, completion:@escaping () -> ()) -> UIViewPropertyAnimator {
@@ -70,6 +56,27 @@ class SongViewController: UIViewController {
         }
         
         return animator
+    }
+    
+    func actionButtonsIsEnabled(_ isEnabled: Bool) {
+        backwardButton.isEnabled = isEnabled
+        playButton.isEnabled = isEnabled
+        forwardButton.isEnabled = isEnabled
+    }
+    
+    func animationForPlayButton(_ sender: UIButton, completion: @escaping () -> Void) {
+        let animator = animationButtonPressed(button: sender) {
+            if self.playButtonPressed {
+                sender.setImage(UIImage(named: "pause"), for: [])
+            } else {
+                sender.setImage(UIImage(named: "play"), for: [])
+            }
+            sender.transform = CGAffineTransform.identity
+            sender.superview?.backgroundColor = .clear
+            
+            completion()
+        }
+        animator.startAnimation()
     }
     
     @IBAction func actionBackwardButton(_ sender: UIButton) {
@@ -96,22 +103,15 @@ class SongViewController: UIViewController {
     
     @IBAction func actionPlayButton(_ sender: UIButton) {
         
-        let animator = animationButtonPressed(button: sender) {
-            if self.playButtonPressed {
-                sender.setImage(UIImage(named: "pause"), for: [])
-            } else {
-                sender.setImage(UIImage(named: "play"), for: [])
-            }
-            sender.transform = CGAffineTransform.identity
-            sender.superview?.backgroundColor = .clear
-            
+        if self.playButtonPressed {
+            player?.play()
+        } else {
+            player?.pause()
+        }
+        animationForPlayButton(sender) {
             self.playButtonPressed.toggle()
         }
-        
-        animator.startAnimation()
     }
-
-
 }
 
 extension SongViewController: URLSessionDownloadDelegate {
@@ -121,44 +121,63 @@ extension SongViewController: URLSessionDownloadDelegate {
                     didFinishDownloadingTo
         location: URL) {
 
-        DispatchQueue.main.async {
-            self.progressView.isHidden = true
-        }
+//        DispatchQueue.main.async {
+//            self.progressView.isHidden = true
+//        }
         
-        let fileManager = FileManager.default
+//        let fileManager = FileManager.default
+//        
+//        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]
+//        
+//        let documentsPathURL = URL(fileURLWithPath: documentsPath)
+//        
+//        var finalPath = documentsPathURL.appendingPathComponent("Preview")
+//        
+//        try? fileManager.createDirectory(at: finalPath, withIntermediateDirectories: true, attributes: nil)
+//        
+//        finalPath.appendPathComponent("\(self.song.artistName)-\(song.trackName).m4a")
         
-        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true)[0]
-        
-        let documentsPathURL = URL(fileURLWithPath: documentsPath)
-        
-        var finalPath = documentsPathURL.appendingPathComponent("Preview")
-        
-        try? fileManager.createDirectory(at: finalPath, withIntermediateDirectories: true, attributes: nil)
-        
-        finalPath.appendPathComponent("\(self.song.artistName)-\(song.trackName).m4a")
+        let path = URL.songPathURL(with: self.song.artistName, trackName: song.trackName)
         
         do {
-            try fileManager.copyItem(at: location, to: finalPath)
+            try FileManager.default.copyItem(at: location, to: path)
+            setupAudioPlayer(contentsOf: path)
         } catch {
             print(error.localizedDescription)
         }
-        
-        DispatchQueue.main.async {
-            self.player = try? AVAudioPlayer(contentsOf: finalPath)
-            self.player?.play()
-        }
-        
-        print()
     }
 
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
 
-        //print("Progress: \(Float(totalBytesWritten) / Float(totalBytesExpectedToWrite))")
-        
         DispatchQueue.main.async {
             self.progressView.setProgress(Float(totalBytesWritten) / Float(totalBytesExpectedToWrite), animated: true)
         }
     }
+    
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
 
+        DispatchQueue.main.async {
+            self.progressView.isHidden = true
+        }
+        
+        if let error = error {
+            self.showAlertWithMessage(error.localizedDescription)
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.actionButtonsIsEnabled(true)
+        }
+    }
+
+}
+
+extension SongViewController: AVAudioPlayerDelegate {
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        
+        animationForPlayButton(playButton) {
+            self.playButtonPressed.toggle()
+        }
+    }
 }
 

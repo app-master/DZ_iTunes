@@ -16,6 +16,7 @@
 		CE1BFB5A229880D2001B2BF8 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1BFB56229880D2001B2BF8 /* pause.png */; };
 		CE1BFB5B229880D2001B2BF8 /* backward.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1BFB57229880D2001B2BF8 /* backward.png */; };
 		CE1BFB5C229880D2001B2BF8 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = CE1BFB58229880D2001B2BF8 /* play.png */; };
+		CE608F7E229E9E1C00F9B51D /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE608F7D229E9E1C00F9B51D /* UIViewController+Extension.swift */; };
 		CEA790B2229C1301009CADE0 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA790B1229C1301009CADE0 /* Song.swift */; };
 		CEA790B4229C3CD1009CADE0 /* SearchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA790B3229C3CD1009CADE0 /* SearchListViewController.swift */; };
 		CEA790B6229C4263009CADE0 /* ServerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEA790B5229C4263009CADE0 /* ServerManager.swift */; };
@@ -35,6 +36,7 @@
 		CE1BFB56229880D2001B2BF8 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		CE1BFB57229880D2001B2BF8 /* backward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backward.png; sourceTree = "<group>"; };
 		CE1BFB58229880D2001B2BF8 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
+		CE608F7D229E9E1C00F9B51D /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		CEA790B1229C1301009CADE0 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		CEA790B3229C3CD1009CADE0 /* SearchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewController.swift; sourceTree = "<group>"; };
 		CEA790B5229C4263009CADE0 /* ServerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 			children = (
 				CE1BFB4222988038001B2BF8 /* AppDelegate.swift */,
 				CEA790B9229C4D77009CADE0 /* URL+Extension.swift */,
+				CE608F7D229E9E1C00F9B51D /* UIViewController+Extension.swift */,
 				CEA790B3229C3CD1009CADE0 /* SearchListViewController.swift */,
 				CE1BFB4422988038001B2BF8 /* SongViewController.swift */,
 				CEA790B7229C4B2F009CADE0 /* Result.swift */,
@@ -174,6 +177,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE608F7E229E9E1C00F9B51D /* UIViewController+Extension.swift in Sources */,
 				CEA790B8229C4B2F009CADE0 /* Result.swift in Sources */,
 				CEA790B6229C4263009CADE0 /* ServerManager.swift in Sources */,
 				CEA790B2229C1301009CADE0 /* Song.swift in Sources */,
