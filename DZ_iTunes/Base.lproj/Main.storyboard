@@ -160,22 +160,31 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ztk-bk-WRj">
+                                <rect key="frame" x="16" y="249" width="288" height="2"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="ztk-bk-WRj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="6Fi-ch-W6I"/>
                             <constraint firstItem="LDL-2L-C45" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="S54-f9-RAm"/>
                             <constraint firstItem="HBS-zn-wsv" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="T6T-rz-Gpl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Iwq-1M-QPW" secondAttribute="trailing" constant="20" id="TrH-4s-uoE"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="LDL-2L-C45" secondAttribute="bottom" constant="40" id="ZHx-Yy-NQv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Iwq-1M-QPW" secondAttribute="bottom" constant="40" id="h9H-cs-ZUp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="HBS-zn-wsv" secondAttribute="bottom" constant="40" id="kb2-Zi-JLU"/>
+                            <constraint firstItem="ztk-bk-WRj" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="w5d-XC-Ni1"/>
+                            <constraint firstItem="ztk-bk-WRj" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="wip-tH-ADg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="progressView" destination="ztk-bk-WRj" id="RKK-gr-rIu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1541" y="130"/>
+            <point key="canvasLocation" x="1539.375" y="130"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="XGM-mr-IVk">
@@ -183,7 +192,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T75-Rc-b5D" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="g6n-tT-rpf">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

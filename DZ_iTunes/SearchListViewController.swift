@@ -93,7 +93,7 @@ extension SearchListViewController: UITableViewDelegate {
        let vc = storyboard.instantiateViewController(withIdentifier: "SongViewController") as! SongViewController
     
         let song = songs[indexPath.row]
-        vc.url = song.previewUrl
+        vc.song = song
         
        navigationController?.pushViewController(vc, animated: true)
         
