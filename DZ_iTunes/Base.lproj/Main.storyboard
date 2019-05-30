@@ -163,14 +163,14 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rbg-Iv-y08">
                                 <rect key="frame" x="20" y="20" width="280" height="352"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2Ti-aD-afB">
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2Ti-aD-afB">
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="352"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3gb-7u-4M2">
-                                                <rect key="frame" x="0.0" y="0.0" width="280" height="234.5"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3gb-7u-4M2">
+                                                <rect key="frame" x="0.0" y="0.0" width="280" height="311"/>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Tfm-6v-3u4">
-                                                <rect key="frame" x="0.0" y="244.5" width="280" height="107.5"/>
+                                                <rect key="frame" x="0.0" y="311" width="280" height="41"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zW-C5-jbo">
                                                         <rect key="frame" x="0.0" y="0.0" width="280" height="20.5"/>
@@ -179,7 +179,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EO9-tT-KWm">
-                                                        <rect key="frame" x="0.0" y="20.5" width="280" height="87"/>
+                                                        <rect key="frame" x="0.0" y="20.5" width="280" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -193,7 +193,6 @@
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="2Ti-aD-afB" secondAttribute="bottom" id="BXh-MS-cOX"/>
                                     <constraint firstAttribute="trailing" secondItem="2Ti-aD-afB" secondAttribute="trailing" id="GJd-Od-d4R"/>
-                                    <constraint firstItem="3gb-7u-4M2" firstAttribute="height" secondItem="rbg-Iv-y08" secondAttribute="height" multiplier="2/3" id="M5z-YA-GH9"/>
                                     <constraint firstItem="2Ti-aD-afB" firstAttribute="leading" secondItem="rbg-Iv-y08" secondAttribute="leading" id="qYk-Qs-gZh"/>
                                     <constraint firstItem="2Ti-aD-afB" firstAttribute="top" secondItem="rbg-Iv-y08" secondAttribute="top" id="xXJ-A8-YGr"/>
                                 </constraints>
@@ -242,7 +241,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T75-Rc-b5D" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="g6n-tT-rpf">
-                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

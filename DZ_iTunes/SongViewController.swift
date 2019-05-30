@@ -27,10 +27,16 @@ class SongViewController: UIViewController {
     var song: Song!
     var playButtonPressed = true
     var imageCache = ServerManager.manager.imageCache
+    var heightConstraint: NSLayoutConstraint!
+    var widthConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.songImageView.translatesAutoresizingMaskIntoConstraints = false
+        heightConstraint = songImageView.heightAnchor.constraint(equalTo: songView.heightAnchor, multiplier: 2/3)
+        widthConstraint = songImageView.widthAnchor.constraint(equalTo: songView.widthAnchor, multiplier: 1/2)
+        
         let finalPath = Song.songPathURL(with: self.song.artistName, trackName: song.trackName)
         
         if FileManager.default.fileExists(atPath: finalPath.path) {
@@ -44,6 +50,18 @@ class SongViewController: UIViewController {
             session.downloadTask(with: song.previewUrl).resume()
         }
     }
+    
+    override func viewDidLayoutSubviews() {
+        if view.bounds.height > view.bounds.width {
+            songStackView.axis = .vertical
+            widthConstraint.isActive = false
+            heightConstraint.isActive = true
+        } else {
+            songStackView.axis = .horizontal
+            heightConstraint.isActive = false
+            widthConstraint.isActive = true
+        }
+}
     
     func setupAudioPlayer(contentsOf url: URL) {
         self.player = try? AVAudioPlayer(contentsOf: url)
