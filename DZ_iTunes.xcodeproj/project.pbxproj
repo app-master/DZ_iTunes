@@ -27,18 +27,18 @@
 /* Begin PBXFileReference section */
 		CE1BFB3F22988038001B2BF8 /* DZ_iTunes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DZ_iTunes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE1BFB4222988038001B2BF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CE1BFB4422988038001B2BF8 /* SongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongViewController.swift; sourceTree = "<group>"; };
+		CE1BFB4422988038001B2BF8 /* SongViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SongViewController.swift; path = ../SongViewController.swift; sourceTree = "<group>"; };
 		CE1BFB4722988038001B2BF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		CE1BFB492298803A001B2BF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CE1BFB492298803A001B2BF8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../Assets.xcassets; sourceTree = "<group>"; };
 		CE1BFB4C2298803A001B2BF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		CE1BFB4E2298803A001B2BF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CE1BFB4E2298803A001B2BF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 		CE1BFB55229880D2001B2BF8 /* forward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forward.png; sourceTree = "<group>"; };
 		CE1BFB56229880D2001B2BF8 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		CE1BFB57229880D2001B2BF8 /* backward.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backward.png; sourceTree = "<group>"; };
 		CE1BFB58229880D2001B2BF8 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		CE608F7D229E9E1C00F9B51D /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		CEA790B1229C1301009CADE0 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
-		CEA790B3229C3CD1009CADE0 /* SearchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchListViewController.swift; sourceTree = "<group>"; };
+		CEA790B3229C3CD1009CADE0 /* SearchListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchListViewController.swift; path = ../SearchListViewController.swift; sourceTree = "<group>"; };
 		CEA790B5229C4263009CADE0 /* ServerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerManager.swift; sourceTree = "<group>"; };
 		CEA790B7229C4B2F009CADE0 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		CEA790B9229C4D77009CADE0 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
@@ -55,6 +55,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE11E947229FFE000059C076 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CEA790B9229C4D77009CADE0 /* URL+Extension.swift */,
+				CE608F7D229E9E1C00F9B51D /* UIViewController+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CE11E948229FFE3B0059C076 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				CEA790B3229C3CD1009CADE0 /* SearchListViewController.swift */,
+				CE1BFB4422988038001B2BF8 /* SongViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		CE11E949229FFE550059C076 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CEA790B7229C4B2F009CADE0 /* Result.swift */,
+				CEA790B1229C1301009CADE0 /* Song.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CE11E94A229FFE760059C076 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				CEA790B5229C4263009CADE0 /* ServerManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		CE11E94B229FFE9A0059C076 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE1BFB4622988038001B2BF8 /* Main.storyboard */,
+				CE1BFB4B2298803A001B2BF8 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CE11E94D229FFEC20059C076 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				CE1BFB54229880D2001B2BF8 /* Images */,
+				CE1BFB4222988038001B2BF8 /* AppDelegate.swift */,
+				CE1BFB492298803A001B2BF8 /* Assets.xcassets */,
+				CE1BFB4E2298803A001B2BF8 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		CE1BFB3622988038001B2BF8 = {
 			isa = PBXGroup;
 			children = (
@@ -74,19 +129,12 @@
 		CE1BFB4122988038001B2BF8 /* DZ_iTunes */ = {
 			isa = PBXGroup;
 			children = (
-				CE1BFB4222988038001B2BF8 /* AppDelegate.swift */,
-				CEA790B9229C4D77009CADE0 /* URL+Extension.swift */,
-				CE608F7D229E9E1C00F9B51D /* UIViewController+Extension.swift */,
-				CEA790B3229C3CD1009CADE0 /* SearchListViewController.swift */,
-				CE1BFB4422988038001B2BF8 /* SongViewController.swift */,
-				CEA790B7229C4B2F009CADE0 /* Result.swift */,
-				CEA790B1229C1301009CADE0 /* Song.swift */,
-				CEA790B5229C4263009CADE0 /* ServerManager.swift */,
-				CE1BFB4622988038001B2BF8 /* Main.storyboard */,
-				CE1BFB492298803A001B2BF8 /* Assets.xcassets */,
-				CE1BFB54229880D2001B2BF8 /* Images */,
-				CE1BFB4B2298803A001B2BF8 /* LaunchScreen.storyboard */,
-				CE1BFB4E2298803A001B2BF8 /* Info.plist */,
+				CE11E94A229FFE760059C076 /* Managers */,
+				CE11E947229FFE000059C076 /* Extensions */,
+				CE11E949229FFE550059C076 /* Models */,
+				CE11E94B229FFE9A0059C076 /* Views */,
+				CE11E948229FFE3B0059C076 /* ViewControllers */,
+				CE11E94D229FFEC20059C076 /* Supporting Files */,
 			);
 			path = DZ_iTunes;
 			sourceTree = "<group>";
@@ -99,7 +147,8 @@
 				CE1BFB57229880D2001B2BF8 /* backward.png */,
 				CE1BFB58229880D2001B2BF8 /* play.png */,
 			);
-			path = Images;
+			name = Images;
+			path = ../Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

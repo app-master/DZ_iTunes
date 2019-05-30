@@ -22,21 +22,18 @@ class SongViewController: UIViewController {
     @IBOutlet weak var trackNameLabel: UILabel!
     @IBOutlet weak var artistNameLabel: UILabel!
     
+    @IBOutlet weak var heightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var widthConstraint: NSLayoutConstraint!
+    
     var session: URLSession!
     var player: AVAudioPlayer?
     var song: Song!
     var playButtonPressed = true
     var imageCache = ServerManager.manager.imageCache
-    var heightConstraint: NSLayoutConstraint!
-    var widthConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.songImageView.translatesAutoresizingMaskIntoConstraints = false
-        heightConstraint = songImageView.heightAnchor.constraint(equalTo: songView.heightAnchor, multiplier: 2/3)
-        widthConstraint = songImageView.widthAnchor.constraint(equalTo: songView.widthAnchor, multiplier: 1/2)
-        
         let finalPath = Song.songPathURL(with: self.song.artistName, trackName: song.trackName)
         
         if FileManager.default.fileExists(atPath: finalPath.path) {
@@ -51,17 +48,42 @@ class SongViewController: UIViewController {
         }
     }
     
-    override func viewDidLayoutSubviews() {
-        if view.bounds.height > view.bounds.width {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        updateSongStackView(for: view.bounds.size)
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        updateSongStackView(for: size)
+    }
+    
+    func updateSongStackView(for size: CGSize) {
+        if size.height > size.width {
             songStackView.axis = .vertical
-            widthConstraint.isActive = false
-            heightConstraint.isActive = true
+            songStackView.spacing = 10
+            
+            if widthConstraint != nil {
+                widthConstraint.priority = .defaultLow
+            }
+            if heightConstraint != nil {
+                heightConstraint.priority = .defaultHigh
+            }
+            
         } else {
             songStackView.axis = .horizontal
-            heightConstraint.isActive = false
-            widthConstraint.isActive = true
+            songStackView.spacing = 0
+            
+            if widthConstraint != nil {
+                widthConstraint.priority = .defaultHigh
+            }
+            if heightConstraint != nil {
+                heightConstraint.priority = .defaultLow
+            }
         }
-}
+    }
     
     func setupAudioPlayer(contentsOf url: URL) {
         self.player = try? AVAudioPlayer(contentsOf: url)

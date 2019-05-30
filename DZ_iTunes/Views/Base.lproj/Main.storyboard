@@ -167,10 +167,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="280" height="352"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3gb-7u-4M2">
-                                                <rect key="frame" x="0.0" y="0.0" width="280" height="311"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="280" height="234.5"/>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Tfm-6v-3u4">
-                                                <rect key="frame" x="0.0" y="311" width="280" height="41"/>
+                                                <rect key="frame" x="0.0" y="234.5" width="280" height="117.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zW-C5-jbo">
                                                         <rect key="frame" x="0.0" y="0.0" width="280" height="20.5"/>
@@ -179,7 +179,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EO9-tT-KWm">
-                                                        <rect key="frame" x="0.0" y="20.5" width="280" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="20.5" width="280" height="97"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -193,7 +193,9 @@
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="2Ti-aD-afB" secondAttribute="bottom" id="BXh-MS-cOX"/>
                                     <constraint firstAttribute="trailing" secondItem="2Ti-aD-afB" secondAttribute="trailing" id="GJd-Od-d4R"/>
+                                    <constraint firstItem="3gb-7u-4M2" firstAttribute="width" secondItem="rbg-Iv-y08" secondAttribute="width" multiplier="1/2" priority="250" id="O5u-Vp-u8g"/>
                                     <constraint firstItem="2Ti-aD-afB" firstAttribute="leading" secondItem="rbg-Iv-y08" secondAttribute="leading" id="qYk-Qs-gZh"/>
+                                    <constraint firstItem="3gb-7u-4M2" firstAttribute="height" secondItem="rbg-Iv-y08" secondAttribute="height" multiplier="2/3" priority="750" id="szD-if-upn"/>
                                     <constraint firstItem="2Ti-aD-afB" firstAttribute="top" secondItem="rbg-Iv-y08" secondAttribute="top" id="xXJ-A8-YGr"/>
                                 </constraints>
                             </view>
@@ -223,12 +225,14 @@
                         <outlet property="artistNameLabel" destination="EO9-tT-KWm" id="jhb-yX-eW6"/>
                         <outlet property="backwardButton" destination="jnt-yR-8hL" id="vib-En-eQb"/>
                         <outlet property="forwardButton" destination="ece-qg-YVj" id="oIH-Vz-4dk"/>
+                        <outlet property="heightConstraint" destination="szD-if-upn" id="Lma-id-8cG"/>
                         <outlet property="playButton" destination="Wop-AM-UFG" id="E78-Oz-tJx"/>
                         <outlet property="progressView" destination="ztk-bk-WRj" id="RKK-gr-rIu"/>
                         <outlet property="songImageView" destination="3gb-7u-4M2" id="4If-eT-eBJ"/>
                         <outlet property="songStackView" destination="2Ti-aD-afB" id="hSp-YX-4x1"/>
                         <outlet property="songView" destination="rbg-Iv-y08" id="qDn-t5-WMm"/>
                         <outlet property="trackNameLabel" destination="8zW-C5-jbo" id="wSn-Q7-MhW"/>
+                        <outlet property="widthConstraint" destination="O5u-Vp-u8g" id="feN-3t-C2Q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
