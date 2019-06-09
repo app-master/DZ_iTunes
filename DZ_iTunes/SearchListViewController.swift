@@ -58,8 +58,6 @@ class SearchListViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.imageCache.setObject(image, forKey: song.imageUrl as NSURL)
                     cell.imageView?.image = image
-                    cell.layoutSubviews()
-                    cell.layoutIfNeeded()
                 }
             }
         }
